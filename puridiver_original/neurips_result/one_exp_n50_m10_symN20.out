@@ -1,0 +1,154 @@
+[Execute] CUDA_VISIBLE_DEVICES=4,5,6 nohup python main.py --batchsize 16 \
+--coeff 0.5 \
+--dataset cifar10 \
+--dataset_path dataset/cifar10 \
+--debug False \
+--exp_name blurry10 \
+--init_model False \
+--init_opt True \
+--log_path results \
+--lr 0.05 \
+--m 10 \
+--mem_manage PuriDivER \
+--memory_size 500 \
+--model_name resnet18 \
+--n 50 \
+--n_cls_a_task 2 \
+--n_epoch 255 \
+--n_init_cls 10 \
+--n_tasks 5 \
+--n_worker 32 \
+--noise_rate 0.0 \
+--noisy_percent 20 \
+--rnd_seed 1 \
+--robust_type PuriDivER \
+--topk 1 \
+--transforms autoaug cutmix \
+--warmup 10 &
+[INFO] main.py:42 > ###############################
+[INFO] main.py:43 > ##### Random Seed 1 Start #####
+[INFO] main.py:44 > ###############################
+[INFO] main.py:47 > _get_args: <bound method _AttributeHolder._get_args of Namespace(batchsize=16, coeff=0.5, dataset='cifar10', dataset_path='dataset/cifar10', debug=False, exp_name='blurry10', init_model=False, init_opt=True, log_path='results', lr=0.05, m=10, mem_manage='PuriDivER', memory_size=500, model_name='resnet18', n=50, n_cls_a_task=2, n_epoch=255, n_init_cls=10, n_tasks=5, n_worker=32, noise_rate=0.0, noisy_percent=20, rnd_seed=['1'], robust_type='PuriDivER', topk=1, transforms=['autoaug', 'cutmix'], warmup=10)>
+_get_kwargs: <bound method _AttributeHolder._get_kwargs of Namespace(batchsize=16, coeff=0.5, dataset='cifar10', dataset_path='dataset/cifar10', debug=False, exp_name='blurry10', init_model=False, init_opt=True, log_path='results', lr=0.05, m=10, mem_manage='PuriDivER', memory_size=500, model_name='resnet18', n=50, n_cls_a_task=2, n_epoch=255, n_init_cls=10, n_tasks=5, n_worker=32, noise_rate=0.0, noisy_percent=20, rnd_seed=['1'], robust_type='PuriDivER', topk=1, transforms=['autoaug', 'cutmix'], warmup=10)>
+batchsize: 16
+coeff: 0.5
+dataset: cifar10
+dataset_path: dataset/cifar10
+debug: False
+exp_name: blurry10
+init_model: False
+init_opt: True
+log_path: results
+lr: 0.05
+m: 10
+mem_manage: PuriDivER
+memory_size: 500
+model_name: resnet18
+n: 50
+n_cls_a_task: 2
+n_epoch: 255
+n_init_cls: 10
+n_tasks: 5
+n_worker: 32
+noise_rate: 0.0
+noisy_percent: 20
+rnd_seed: ['1']
+robust_type: PuriDivER
+topk: 1
+transforms: ['autoaug', 'cutmix']
+warmup: 10
+[INFO] main.py:53 > Set the device (cuda)
+[INFO] main.py:79 > Using train-transforms Compose(
+    Resize(size=(32, 32), interpolation=bilinear, max_size=None, antialias=None)
+    RandomCrop(size=(32, 32), padding=4)
+    RandomHorizontalFlip(p=0.5)
+    AutoAugment CIFAR10 Policy
+    ToTensor()
+    Normalize(mean=(0.4914, 0.4822, 0.4465), std=(0.2023, 0.1994, 0.201))
+)
+[INFO] main.py:98 > [1] Select a CIL method (PuriDivER/PuriDivER)
+[INFO] main.py:109 > [2] Incrementally training 5 tasks
+[INFO] main.py:114 > ##################################################
+[INFO] main.py:115 > # Task 0 iteration
+[INFO] main.py:116 > ##################################################
+[INFO] main.py:117 > [2-1] Prepare a datalist for the current task
+[INFO] data_loader.py:81 > [Train] Get datalist from cifar10_train_increment50_blurry10_symN20_rand1_task0.json
+[INFO] main.py:134 > [2-2] Set environment for the current task
+[INFO] PuriDivER.py:794 > Apply before_task
+[0, 5, 6, 7, 8, 9]
+exposed 6 learn 10
+[INFO] PuriDivER.py:823 > Blurry! There is no modification on model fc layer!
+[INFO] PuriDivER.py:832 > Reset the optimizer and scheduler states
+[INFO] PuriDivER.py:840 > Increasing the head of fc 10 -> 10
+[INFO] main.py:141 > [2-3] Start to online train
+streamed class count
+Counter({'truck': 4130, 'bird': 3778, 'horse': 319, 'ship': 305, 'dog': 305, 'deer': 300, 'airplane': 233, 'automobile': 226, 'frog': 224, 'cat': 199})
+Counter({0: 5079, 5: 4541, 8: 112, 7: 110, 6: 89, 9: 88})
+test_len 10000
+real_test_len 6000
+Counter({'dog': 1000, 'truck': 1000, 'bird': 1000, 'ship': 1000, 'horse': 1000, 'deer': 1000})
+Counter({6: 1000, 0: 1000, 5: 1000, 9: 1000, 7: 1000, 8: 1000})
+[INFO] PuriDivER.py:960 > [0/626] loss: 2.521416664123535, diversity coeff: 0.19830121975250928, 139.32156562805176 msec
+[INFO] PuriDivER.py:960 > [1/626] loss: 2.6369142532348633, diversity coeff: 0.1896155703154244, 42.61946678161621 msec
+[INFO] PuriDivER.py:960 > [2/626] loss: 2.467339515686035, diversity coeff: 0.20264742522107937, 38.84577751159668 msec
+[INFO] PuriDivER.py:960 > [3/626] loss: 2.3155179023742676, diversity coeff: 0.21593441341451686, 36.10420227050781 msec
+[INFO] PuriDivER.py:960 > [4/626] loss: 2.626065492630005, diversity coeff: 0.19039890718766878, 40.3447151184082 msec
+[INFO] PuriDivER.py:960 > [5/626] loss: 2.208098888397217, diversity coeff: 0.22643913396602125, 30.010461807250977 msec
+[INFO] PuriDivER.py:960 > [6/626] loss: 2.3537275791168213, diversity coeff: 0.21242900174013035, 36.794424057006836 msec
+[INFO] PuriDivER.py:960 > [7/626] loss: 2.186910629272461, diversity coeff: 0.22863302839510158, 29.282569885253906 msec
+[INFO] PuriDivER.py:960 > [8/626] loss: 1.9703915119171143, diversity coeff: 0.25375667575502264, 29.276609420776367 msec
+[INFO] PuriDivER.py:960 > [9/626] loss: 2.070087432861328, diversity coeff: 0.2415356917117685, 31.92901611328125 msec
+[INFO] PuriDivER.py:960 > [10/626] loss: 2.016385555267334, diversity coeff: 0.24796844963199988, 43.31207275390625 msec
+[INFO] PuriDivER.py:960 > [11/626] loss: 2.1113293170928955, diversity coeff: 0.23681762762071318, 39.82830047607422 msec
+[INFO] PuriDivER.py:960 > [12/626] loss: 1.9774924516677856, diversity coeff: 0.2528454657707077, 39.48497772216797 msec
+[INFO] PuriDivER.py:960 > [13/626] loss: 2.2864785194396973, diversity coeff: 0.21867688489044945, 30.689716339111328 msec
+[INFO] PuriDivER.py:960 > [14/626] loss: 2.44913911819458, diversity coeff: 0.20415336813066892, 22.90201187133789 msec
+[INFO] PuriDivER.py:960 > [15/626] loss: 2.202883243560791, diversity coeff: 0.22697526138143778, 30.254125595092773 msec
+[INFO] PuriDivER.py:960 > [16/626] loss: 2.2629501819610596, diversity coeff: 0.22095051141015526, 25.571346282958984 msec
+[INFO] PuriDivER.py:960 > [17/626] loss: 1.9777889251708984, diversity coeff: 0.2528075638591189, 31.618118286132812 msec
+[INFO] PuriDivER.py:960 > [18/626] loss: 2.0813167095184326, diversity coeff: 0.240232540157566, 35.88128089904785 msec
+[INFO] PuriDivER.py:960 > [19/626] loss: 1.9773147106170654, diversity coeff: 0.2528681940792135, 34.59787368774414 msec
+[INFO] PuriDivER.py:960 > [20/626] loss: 2.2070114612579346, diversity coeff: 0.22655070387129483, 36.37504577636719 msec
+[INFO] PuriDivER.py:960 > [21/626] loss: 2.2130441665649414, diversity coeff: 0.22593313208750532, 37.19520568847656 msec
+[INFO] PuriDivER.py:960 > [22/626] loss: 2.1338818073272705, diversity coeff: 0.23431475833530815, 36.4840030670166 msec
+[INFO] PuriDivER.py:960 > [23/626] loss: 1.7731070518493652, diversity coeff: 0.2819908699130692, 35.98809242248535 msec
+[INFO] PuriDivER.py:960 > [24/626] loss: 1.7480554580688477, diversity coeff: 0.28603211510942084, 32.67049789428711 msec
+[INFO] PuriDivER.py:960 > [25/626] loss: 2.201862096786499, diversity coeff: 0.22708052458404343, 25.725364685058594 msec
+[INFO] PuriDivER.py:960 > [26/626] loss: 1.7163335084915161, diversity coeff: 0.2913186729305597, 30.411481857299805 msec
+[INFO] PuriDivER.py:960 > [27/626] loss: 1.8713600635528564, diversity coeff: 0.26718535344327526, 30.81822395324707 msec
+[INFO] PuriDivER.py:960 > [28/626] loss: 1.891764521598816, diversity coeff: 0.26430350833381067, 27.621030807495117 msec
+[INFO] PuriDivER.py:960 > [29/626] loss: 1.6829586029052734, diversity coeff: 0.2970958401097064, 30.665874481201172 msec
+[INFO] PuriDivER.py:960 > [30/626] loss: 2.368736505508423, diversity coeff: 0.2110829967103836, 43.443918228149414 msec
+[INFO] PuriDivER.py:960 > [31/626] loss: 2.2521862983703613, diversity coeff: 0.22200650113260628, 718.895435333252 msec
+[INFO] PuriDivER.py:960 > [32/626] loss: 2.7398571968078613, diversity coeff: 0.18249126289594123, 793.5581207275391 msec
+[INFO] PuriDivER.py:960 > [33/626] loss: 1.8271911144256592, diversity coeff: 0.27364406276524883, 787.562370300293 msec
+[INFO] PuriDivER.py:960 > [34/626] loss: 0.906196653842926, diversity coeff: 0.5, 802.1948337554932 msec
+[INFO] PuriDivER.py:960 > [35/626] loss: 0.6907054781913757, diversity coeff: 0.5, 778.5179615020752 msec
+[INFO] PuriDivER.py:960 > [36/626] loss: 0.5593116283416748, diversity coeff: 0.5, 816.460132598877 msec
+[INFO] PuriDivER.py:960 > [37/626] loss: 0.7983618378639221, diversity coeff: 0.5, 770.5767154693604 msec
+[INFO] PuriDivER.py:960 > [38/626] loss: 1.5096843242645264, diversity coeff: 0.3311950663881903, 772.6583480834961 msec
+[INFO] PuriDivER.py:960 > [39/626] loss: 1.0489662885665894, diversity coeff: 0.4766597415473181, 765.9544944763184 msec
+[INFO] PuriDivER.py:960 > [40/626] loss: 1.2288912534713745, diversity coeff: 0.40687082651747986, 893.8508033752441 msec
+[INFO] PuriDivER.py:960 > [41/626] loss: 0.3407595753669739, diversity coeff: 0.5, 906.6531658172607 msec
+[INFO] PuriDivER.py:960 > [42/626] loss: 1.4201085567474365, diversity coeff: 0.3520857596585301, 808.9962005615234 msec
+[INFO] PuriDivER.py:960 > [43/626] loss: 0.7253314852714539, diversity coeff: 0.5, 848.2575416564941 msec
+[INFO] PuriDivER.py:960 > [44/626] loss: 1.3260834217071533, diversity coeff: 0.3770501853920453, 910.5410575866699 msec
+[INFO] PuriDivER.py:960 > [45/626] loss: 1.236528992652893, diversity coeff: 0.4043576842685122, 860.1255416870117 msec
+[INFO] PuriDivER.py:960 > [46/626] loss: 1.0608651638031006, diversity coeff: 0.4713134308299347, 821.5091228485107 msec
+[INFO] PuriDivER.py:960 > [47/626] loss: 0.6067943572998047, diversity coeff: 0.5, 813.0674362182617 msec
+[INFO] PuriDivER.py:960 > [48/626] loss: 1.242369532585144, diversity coeff: 0.40245674647187407, 822.3395347595215 msec
+[INFO] PuriDivER.py:960 > [49/626] loss: 0.7946637272834778, diversity coeff: 0.5, 839.0891551971436 msec
+[INFO] PuriDivER.py:960 > [50/626] loss: 1.5620691776275635, diversity coeff: 0.3200882567565856, 793.2076454162598 msec
+[INFO] PuriDivER.py:960 > [51/626] loss: 0.6225918531417847, diversity coeff: 0.5, 911.3318920135498 msec
+[INFO] PuriDivER.py:960 > [52/626] loss: 0.6729084253311157, diversity coeff: 0.5, 790.4219627380371 msec
+[INFO] PuriDivER.py:960 > [53/626] loss: 0.5201951861381531, diversity coeff: 0.5, 792.2639846801758 msec
+[INFO] PuriDivER.py:960 > [54/626] loss: 0.6080547571182251, diversity coeff: 0.5, 918.84446144104 msec
+[INFO] PuriDivER.py:960 > [55/626] loss: 0.6413578987121582, diversity coeff: 0.5, 844.8853492736816 msec
+[INFO] PuriDivER.py:960 > [56/626] loss: 1.0877662897109985, diversity coeff: 0.4596575613065208, 874.5636940002441 msec
+[INFO] PuriDivER.py:960 > [57/626] loss: 1.5064464807510376, diversity coeff: 0.3319069123190659, 866.4431571960449 msec
+[INFO] PuriDivER.py:960 > [58/626] loss: 0.6269201636314392, diversity coeff: 0.5, 852.4281978607178 msec
+[INFO] PuriDivER.py:960 > [59/626] loss: 1.1882444620132446, diversity coeff: 0.4207888325882446, 849.6806621551514 msec
+[INFO] PuriDivER.py:960 > [60/626] loss: 0.8429802656173706, diversity coeff: 0.5, 812.9856586456299 msec
+[INFO] PuriDivER.py:960 > [61/626] loss: 0.7974987030029297, diversity coeff: 0.5, 807.1084022521973 msec
+[INFO] PuriDivER.py:960 > [62/626] loss: 1.10103440284729, diversity coeff: 0.4541184169241153, 816.2186145782471 msec
+[INFO] PuriDivER.py:960 > [63/626] loss: 0.6655949950218201, diversity coeff: 0.5, 798.9706993103027 msec
